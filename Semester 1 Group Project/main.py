@@ -9,6 +9,8 @@
         xx     Chetan Gurram
 """
 
+# Project file imports
 import init
-from sounds import Sound
-import playsound
+import game
+
+game = game.Game("test.txt")

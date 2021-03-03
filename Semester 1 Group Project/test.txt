@@ -1,6 +1,31 @@
-<cool>
-    <uncool>
-        Aryansh is cool.
-    </uncool>
-    i am not cool.
-</cool>
+
+<sounds>
+    <sound>
+        <file> footsteps.wav </file>
+        <name> footsteps </name>
+    </sound>
+
+    <sound>
+        <file> gravelwalk.wav </file>
+        <name> gravelwalk </name>
+    </sound>
+
+    <sound>
+        <file> headchop.wav </file>
+        <name> headchop </name>
+    </sound>
+</sounds>
+
+<locations>
+    <location>
+        <id> 0 </id>
+        <name> Outside the house </name>
+
+        <desc>
+            This place is outside the house...
+        </desc>
+
+        <interactions>
+        </interactions>
+    </location>
+</locations>
