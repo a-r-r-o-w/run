@@ -89,8 +89,8 @@ class Game:
                 }
 
             self.__locations = {
-                "id" : lid,
-                "name" : name,
+                "id"           : lid,
+                "name"         : name,
                 "interactions" : interactions
             }
 
@@ -118,9 +118,51 @@ class Game:
 
         os.system("cls || clear")
 
+    @staticmethod
+    def __blank_line(count):
+        """
+            Prints a formatted blank line onto screen
+
+            :return: None
+        """
+
+        for i in range(count):
+            print("| {:<98} |".format(""), flush = True)
+
     def start(self):
+
+        # Display startup screen
+        self.clear_screen()
+        print(" {:-<100} ".format(""), flush = True)
+        Game.Run()
+        Game.__blank_line(3)
+        print("| Please wait! Initializing", end = "", flush = True)
+
+        for i in range(3):
+            for j in range(3):
+                time.sleep(0.3)
+                print(".", end = "", flush = True)
+                time.sleep(0.3)
+            print("\b\b\b   \b\b\b", end = "", flush = True)
+
+        print("{:73} |".format(""))
+        Game.__blank_line(3)
+        print("| {0:98} |".format("Press X to begin game"), flush = True)
+        print("| {0:98} |".format("Press any to exit game"), flush = True)
+        print("| Input: ", end = "", flush = True)
+
+        key = input()
+
+        if key == "X":
+            print("| {:98} |".format(""), flush = True)
+            print(" {:-<100} ".format(""), flush = True)
+            time.sleep(2)
+        else:
+            Game.clear_screen()
+            exit()
+
         while self.event():
-            self.clear_screen()
+            Game.clear_screen()
             self.print_screen()
             time.sleep(5)
             break
@@ -131,7 +173,7 @@ class Game:
         if loc == "-1":
             return False
 
-        self.__text = [self.__locations["interactions"]["1"]["content"]]
+        self.__text = [line.strip() for line in self.__locations["interactions"]["1"]["content"].split("\n")]
 
         return True
 
@@ -154,3 +196,16 @@ class Game:
         print(" {:-<100} ".format(""), flush = True)
 
         self.__text = []
+
+    @staticmethod
+    def Run():
+        run = ["██████╗░     ██╗░░░██╗      ███╗░░██╗", "██╔══██╗     ██║░░░██║      ████╗░██║",
+               "██████╔╝     ██║░░░██║      ██╔██╗██║", "██╔══██╗     ██║░░░██║      ██║╚████║",
+               "██║░░██║     ╚██████╔╝      ██║░╚███║", "╚═╝░░╚═╝     ░╚═════╝░      ╚═╝░░╚══╝"]
+
+        for line in run:
+            print("| {0:^98} |".format(line), flush = True)
+        print("| {:<98} |".format("Made with ♥ by:"))
+        print("| {:<98} |".format("    Aryan V S"))
+        print("| {:<98} |".format("    Aryansh Bhargavan"))
+        print("| {:<98} |".format("    Chetan Gurram"))
