@@ -24,7 +24,7 @@
     </sounds>
 
     <locations>
-        <location id = "0">
+        <location id = "1">
             <name> Outside "The" House </name>
 
             <interaction id = "1">
@@ -54,8 +54,7 @@
                 </choice>
 
                 <choice id = "2">
-                    You notice that too many things are weird and think to yourself that this is a dream
-                    and that you have to wake up
+                    You think it's a dream and want to wake up
                 </choice>
 
                 <response id = "1" location = "2">

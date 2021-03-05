@@ -12,7 +12,7 @@ import subprocess
 import time
 
 # Module dependencies
-requirements = {'playsound', 'bs4'}
+requirements = {'playsound', 'bs4', 'lxml'}
 
 # Installed/Available Modules
 installed = {i.key for i in pkg_resources.working_set}

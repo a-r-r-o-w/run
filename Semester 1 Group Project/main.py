@@ -26,3 +26,4 @@ import game
 Game = game.Game("config.xml")
 
 Game.start()
+Game.end()

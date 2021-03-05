@@ -36,7 +36,7 @@ class Game:
         self.__set_sound_files()
 
         # Game player
-        self.__player = player.Player(0)
+        self.__player = player.Player("1")
 
         # Text to display on screen
         self.__text = []
@@ -83,9 +83,9 @@ class Game:
                     }
 
                 interactions [iid] = {
-                    "content"  : icontent,
-                    "choices"  : choices,
-                    "response" : responses
+                    "content"   : icontent,
+                    "choices"   : choices,
+                    "responses" : responses
                 }
 
             self.__locations = {
@@ -143,37 +143,71 @@ class Game:
                 time.sleep(0.3)
                 print(".", end = "", flush = True)
                 time.sleep(0.3)
-            print("\b\b\b   \b\b\b", end = "", flush = True)
+            if i != 2:
+                print("\b\b\b   \b\b\b", end = "", flush = True)
 
-        print("{:73} |".format(""))
+        print("{:70} |".format(""))
         Game.__blank_line(3)
-        print("| {0:98} |".format("Press X to begin game"), flush = True)
-        print("| {0:98} |".format("Press any to exit game"), flush = True)
-        print("| Input: ", end = "", flush = True)
-
+        print("| {0:98} |".format(" ► Press X to begin game"), flush = True)
+        print("| {0:98} |".format(" ► Press any to exit game"), flush = True)
+        Game.__blank_line(1)
+        print(">>> ", end = "", flush = True)
         key = input()
+        Game.__blank_line(1)
 
-        if key == "X":
+        if key == "X" or key == 'x':
             print("| {:98} |".format(""), flush = True)
             print(" {:-<100} ".format(""), flush = True)
             time.sleep(2)
         else:
             Game.clear_screen()
-            exit()
+            self.end()
 
-        while self.event():
+        while True:
+            self.event()
             Game.clear_screen()
+
+            print(" {:-<100} ".format(""), flush = True)
+
             self.print_screen()
-            time.sleep(5)
-            break
+            time.sleep(1)
+
+            Game.__blank_line(1)
+            self.__interact()
+            Game.__blank_line(1)
+
+            print(" {:-<100} ".format(""), flush = True)
+            time.sleep(2)
+
+            Game.clear_screen()
+
+            print(" {:-<100} ".format(""), flush = True)
+            self.print_screen()
+
+            Game.__blank_line(1)
+            print("| {0:<98} |".format("Press any key to continue"))
+            Game.__blank_line(1)
+            input()
+            print(" {:-<100} ".format(""), flush = True)
+            time.sleep(2)
+
+
+    @staticmethod
+    def end():
+        exit()
 
     def event(self):
         loc = self.__player.location
 
         if loc == "-1":
-            return False
+            self.end()
 
-        self.__text = [line.strip() for line in self.__locations["interactions"]["1"]["content"].split("\n")]
+        self.__text  = [line.strip() for line in self.__locations["interactions"][loc]["content"].split("\n")]
+        for choice in self.__locations["interactions"][loc]["choices"]:
+            c = self.__locations["interactions"][loc]["choices"][choice].strip()
+
+            string = "(" + choice + ") " + c
+            self.__text += [string]
 
         return True
 
@@ -184,7 +218,13 @@ class Game:
             :return: None
         """
 
-        print(" {:-<100} ".format(""), flush = True)
+        run = ["█▄▄▄▄  ▄      ▄", "█  ▄▀   █      █", " █▀▀▌ █   █ ██   █",
+               " █  █ █   █ █ █  █", "   █  █▄ ▄█ █  █ █", "  ▀    ▀▀▀  █   ██"]
+
+        for line in run:
+            print("| {:^98} |".format(line), flush = True)
+        Game.__blank_line(1)
+
         for line in self.__text:
             string = "| {0:<98} |".format(line)
 
@@ -192,10 +232,24 @@ class Game:
                 print(c, end = "", flush = True)
                 if c != " ":
                     time.sleep(self.__text_display_delay)
-            print()
-        print(" {:-<100} ".format(""), flush = True)
+
+            print(flush = True)
 
         self.__text = []
+
+    def __interact(self):
+        print(">>> ", end = "", flush = True)
+        key = input()
+
+        loc = self.__player.location
+
+        if key not in self.__locations["interactions"][loc]["responses"].keys():
+            Game.clear_screen()
+            self.end()
+
+        response = self.__locations["interactions"][loc]["responses"][key]
+        self.__player.set_location(response["loc"])
+        self.__text = [line.strip() for line in response["content"].split("\n")]
 
     @staticmethod
     def Run():
