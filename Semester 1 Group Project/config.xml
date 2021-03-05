@@ -1,0 +1,95 @@
+
+<configurations>
+    <group_members>
+        <member> Aryan V S - PES1UG20CS083 </member>
+        <member> Aryansh Bhargavan - PES1UG20CS </member>
+        <member> Chetan Gurram - PES1UG20CS </member>
+    </group_members>
+
+    <sounds>
+        <sound>
+            <file> footsteps.wav </file>
+            <name> footsteps </name>
+        </sound>
+
+        <sound>
+            <file> gravelwalk.wav </file>
+            <name> gravelwalk </name>
+        </sound>
+
+        <sound>
+            <file> headchop.wav </file>
+            <name> headchop </name>
+        </sound>
+    </sounds>
+
+    <locations>
+        <location id = "0">
+            <name> Outside "The" House </name>
+
+            <interaction id = "1">
+                <content>
+                    You are travelling back home after a long day at work. The highway is quiet. Unusually quite,
+                    almost deserted, except for a few semi-trucks passing by every once in a while...
+                    You've taken the highway back home for as long as you remember, yet never noticed such silence.
+                    Without worrying much, you continue driving. The background radio has you entertained just when
+                    you barely happen to notice that your car is very low on fuel.
+
+                    With your attention diverted from your good old '90s music, you start to look as far as you
+                    can in the foggy evening light but all you can see is the rage of the wind blowing against
+                    tall trees that envelope both sides of the highway. Before you can do something about it,
+                    your car comes to a sudden halt. You reach out for your phone and notice that it's missing.
+                    You realise you're in a bad situation... and begin to panic. Luckily for you, you notice the
+                    light inside a house, not very far away, flickering, and see smoke coming out the chimney.
+                    You imagine to yourself a family living in the house making preparations for Christmas on the
+                    chilly evening, and think to yourself about asking them for help. You start walking towards
+                    the house and notice shoe prints on the ground when you've almost made it there. After a little
+                    more walking, you finally make it to the house.
+
+                    What do you do next?
+                </content>
+
+                <choice id = "1">
+                    Knock on the door
+                </choice>
+
+                <choice id = "2">
+                    You notice that too many things are weird and think to yourself that this is a dream
+                    and that you have to wake up
+                </choice>
+
+                <response id = "1" location = "2">
+
+                    <play name = "fur_elise"> </play>
+
+                    No response.
+
+                    Strange... You can almost hear the sound of someone playing the Fur Elise from the inside. It is
+                    then that you notice that the door is open. You walk in and ask if anyone's home, making your
+                    presence known in the process.
+
+                    No response, again.
+
+                    The music stops and you anticipate someone coming to greet you. In the nervous excitement, you
+                    fail to notice that the door has closed behind you until a little while later when no one
+                    comes to greet you. Panicked, you try to open the door but notice that they've been locked from
+                    the outside. The lights start to get slightly dimmer and you feel something bad might happen
+                    to you... Just when you are about to say something, the music starts to play again and you move
+                    deeper into the house towards the sound of the piano.
+                </response>
+
+                <response id = "2" location = "-1">
+                    Too bad for you, you are not in a dream! With no other source of help nearby, you walk back
+                    towards your car and notice that it's no longer where you parked it on the highway. It's missing!
+                    Before you can completely grasp the depth of the situation, a metal bat comes swinging at your
+                    head from the back and you collapse into the hands of two people wearing masks.
+
+                    You were hit hard in your head with raw metal and brute force...
+
+                    You died!
+                </response>
+            </interaction>
+        </location>
+    </locations>
+
+</configurations>

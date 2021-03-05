@@ -1,6 +1,8 @@
 """
     main.py
 
+    The program is expected to be running on a Windows/Linux terminal.
+
     Written by:
         Roll   Name                SRN
         __________________________________
@@ -13,4 +15,7 @@
 import init
 import game
 
-game = game.Game("test.txt")
+# create game object by passing in xml configuration file
+Game = game.Game("config.xml")
+
+Game.start()
