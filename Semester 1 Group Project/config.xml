@@ -27,7 +27,7 @@
         <location id = "1">
             <name> Outside "The" House </name>
 
-            <interaction id = "1">
+            <interaction>
                 <content>
                     You are travelling back home after a long day at work. The highway is quiet. Unusually quite,
                     almost deserted, except for a few semi-trucks passing by every once in a while...
@@ -86,6 +86,32 @@
                     You were hit hard in your head with raw metal and brute force...
 
                     You died!
+                </response>
+            </interaction>
+        </location>
+
+        <location id = "2">
+            <name> Inside </name>
+
+            <interaction id = "1">
+                <content>
+                    I'm not cool.
+                </content>
+
+                <choice id = "1">
+                    Knock on the door
+                </choice>
+
+                <choice id = "2">
+                    You think it's a dream and want to wake up
+                </choice>
+
+                <response id = "1" location = "1">
+                    Test
+                </response>
+
+                <response id = "2" location = "-1">
+                    Die!
                 </response>
             </interaction>
         </location>

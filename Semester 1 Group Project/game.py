@@ -14,6 +14,19 @@ import sounds
 import player
 
 class Game:
+    __text_length = 100
+
+    __text_display_delay = 0.00
+
+    __logo1 = ["██████╗░     ██╗░░░██╗      ███╗░░██╗", "██╔══██╗     ██║░░░██║      ████╗░██║",
+               "██████╔╝     ██║░░░██║      ██╔██╗██║", "██╔══██╗     ██║░░░██║      ██║╚████║",
+               "██║░░██║     ╚██████╔╝      ██║░╚███║", "╚═╝░░╚═╝     ░╚═════╝░      ╚═╝░░╚══╝"]
+
+    __logo2 = ["█▄▄▄▄  ▄      ▄", "█  ▄▀   █      █", " █▀▀▌ █   █ ██   █",
+               " █  █ █   █ █ █  █", "   █  █▄ ▄█ █  █ █", "  ▀    ▀▀▀  █   ██"]
+
+    __has_ended = False
+
     def __init__(self, xml_file):
         """
             A Game object requires an xml file to setup game configurations
@@ -40,7 +53,6 @@ class Game:
 
         # Text to display on screen
         self.__text = []
-        self.__text_display_delay = 0.02
 
     def __set_locations(self):
         """
@@ -55,11 +67,10 @@ class Game:
 
         for location in locations:
             lid  = location ["id"]
-            name = location.find("name").text
+            name = location.find("name").text.strip()
 
             interactions = dict()
             for interaction in location.find_all("interaction"):
-                iid      = interaction ["id"]
                 icontent = interaction.content.text
 
                 choices = dict()
@@ -82,14 +93,13 @@ class Game:
                         "content" : response.text
                     }
 
-                interactions [iid] = {
+                interactions = {
                     "content"   : icontent,
                     "choices"   : choices,
                     "responses" : responses
                 }
 
-            self.__locations = {
-                "id"           : lid,
+            self.__locations [lid] = {
                 "name"         : name,
                 "interactions" : interactions
             }
@@ -109,7 +119,7 @@ class Game:
             self.__sounds[name] = sounds.Sound(file)
 
     @staticmethod
-    def clear_screen():
+    def __clear_screen():
         """
             Clears the terminal screen
 
@@ -119,114 +129,117 @@ class Game:
         os.system("cls || clear")
 
     @staticmethod
-    def __blank_line(count):
+    def __pretty_print(string, indent = "<"):
         """
-            Prints a formatted blank line onto screen
+            Formats a string in the predetermined pattern for pretty printing onto screen
+
+            :param string: str to be formatted
+            :return: None
+        """
+
+        print("| {0:{indent}{size}} |".format(string, indent = indent, size = Game.__text_length), flush = True)
+
+    @staticmethod
+    def __boxify(f):
+        print(" {:-<{size}} ".format("", size = Game.__text_length + 2), flush = True)
+        f()
+        print(" {:-<{size}} ".format("", size = Game.__text_length + 2), flush = True)
+
+    @staticmethod
+    def __startup():
+        """
+            Displays startup screen
 
             :return: None
         """
 
-        for i in range(count):
-            print("| {:<98} |".format(""), flush = True)
+        for line in Game.__logo1:
+            Game.__pretty_print(line, "^")
+
+        Game.__pretty_print("Made with ♥ by:")
+        Game.__pretty_print("    Aryan V S")
+        Game.__pretty_print("    Aryansh Bhargavan")
+        Game.__pretty_print("    Chetan Gurram")
+        Game.__pretty_print("")
+        Game.__pretty_print("")
+        Game.__pretty_print("")
+        print("{0}".format(input(">>> Press any key to continue")))
+        Game.__pretty_print("")
 
     def start(self):
+        """
+            Starts the main game loop which handles game events and interactions
+
+            :return: None
+        """
 
         # Display startup screen
-        self.clear_screen()
-        print(" {:-<100} ".format(""), flush = True)
-        Game.Run()
-        Game.__blank_line(3)
-        print("| Please wait! Initializing", end = "", flush = True)
+        Game.__clear_screen()
+        Game.__boxify(self.__startup)
 
-        for i in range(3):
-            for j in range(3):
-                time.sleep(0.3)
-                print(".", end = "", flush = True)
-                time.sleep(0.3)
-            if i != 2:
-                print("\b\b\b   \b\b\b", end = "", flush = True)
-
-        print("{:70} |".format(""))
-        Game.__blank_line(3)
-        print("| {0:98} |".format(" ► Press X to begin game"), flush = True)
-        print("| {0:98} |".format(" ► Press any to exit game"), flush = True)
-        Game.__blank_line(1)
-        print(">>> ", end = "", flush = True)
-        key = input()
-        Game.__blank_line(1)
-
-        if key == "X" or key == 'x':
-            print("| {:98} |".format(""), flush = True)
-            print(" {:-<100} ".format(""), flush = True)
-            time.sleep(2)
-        else:
-            Game.clear_screen()
-            self.end()
-
+        # Game loop handling different events
         while True:
-            self.event()
-            Game.clear_screen()
 
-            print(" {:-<100} ".format(""), flush = True)
+            # Clear Game screen
+            Game.__clear_screen()
 
-            self.print_screen()
-            time.sleep(1)
+            # Setup current event
+            Game.__boxify(self.__event)
 
-            Game.__blank_line(1)
-            self.__interact()
-            Game.__blank_line(1)
-
-            print(" {:-<100} ".format(""), flush = True)
             time.sleep(2)
 
-            Game.clear_screen()
+            # Clear Game screen
+            Game.__clear_screen()
 
-            print(" {:-<100} ".format(""), flush = True)
-            self.print_screen()
+            # Print current event response data based on interaction
+            Game.__boxify(self.__respond)
 
-            Game.__blank_line(1)
-            print("| {0:<98} |".format("Press any key to continue"))
-            Game.__blank_line(1)
-            input()
-            print(" {:-<100} ".format(""), flush = True)
             time.sleep(2)
 
-
-    @staticmethod
-    def end():
-        exit()
-
-    def event(self):
+    def __event(self):
         loc = self.__player.location
 
         if loc == "-1":
-            self.end()
+            Game.end()
 
-        self.__text  = [line.strip() for line in self.__locations["interactions"][loc]["content"].split("\n")]
-        for choice in self.__locations["interactions"][loc]["choices"]:
-            c = self.__locations["interactions"][loc]["choices"][choice].strip()
+        content = self.__locations[loc]["interactions"]["content"]
+        choices = self.__locations[loc]["interactions"]["choices"]
+
+        self.__text  = [line.strip() for line in content.split("\n")]
+        for choice in choices:
+            c = choices[choice].strip()
 
             string = "(" + choice + ") " + c
             self.__text += [string]
 
-        return True
+        # Print current event data onto screen
+        self.__print_screen()
 
-    def print_screen(self):
+        # Interact with user based on current event data
+        Game.__pretty_print("")
+        self.__interact()
+        Game.__pretty_print("")
+
+    def __respond(self):
+        self.__print_screen()
+        Game.__pretty_print("")
+        print("{0}".format(input(">>> Press any key to continue")))
+        Game.__pretty_print("")
+
+    def __print_screen(self):
         """
             The presently stored string data is printed onto screen and set to empty
 
             :return: None
         """
 
-        run = ["█▄▄▄▄  ▄      ▄", "█  ▄▀   █      █", " █▀▀▌ █   █ ██   █",
-               " █  █ █   █ █ █  █", "   █  █▄ ▄█ █  █ █", "  ▀    ▀▀▀  █   ██"]
+        for line in Game.__logo2:
+            Game.__pretty_print(line, "^")
 
-        for line in run:
-            print("| {:^98} |".format(line), flush = True)
-        Game.__blank_line(1)
+        Game.__pretty_print("")
 
         for line in self.__text:
-            string = "| {0:<98} |".format(line)
+            string = "| {0:<100} |".format(line)
 
             for c in string:
                 print(c, end = "", flush = True)
@@ -243,23 +256,15 @@ class Game:
 
         loc = self.__player.location
 
-        if key not in self.__locations["interactions"][loc]["responses"].keys():
-            Game.clear_screen()
+        if key not in self.__locations[loc]["interactions"]["responses"].keys():
+            Game.__clear_screen()
             self.end()
 
-        response = self.__locations["interactions"][loc]["responses"][key]
+        response = self.__locations[loc]["interactions"]["responses"][key]
         self.__player.set_location(response["loc"])
         self.__text = [line.strip() for line in response["content"].split("\n")]
 
     @staticmethod
-    def Run():
-        run = ["██████╗░     ██╗░░░██╗      ███╗░░██╗", "██╔══██╗     ██║░░░██║      ████╗░██║",
-               "██████╔╝     ██║░░░██║      ██╔██╗██║", "██╔══██╗     ██║░░░██║      ██║╚████║",
-               "██║░░██║     ╚██████╔╝      ██║░╚███║", "╚═╝░░╚═╝     ░╚═════╝░      ╚═╝░░╚══╝"]
-
-        for line in run:
-            print("| {0:^98} |".format(line), flush = True)
-        print("| {:<98} |".format("Made with ♥ by:"))
-        print("| {:<98} |".format("    Aryan V S"))
-        print("| {:<98} |".format("    Aryansh Bhargavan"))
-        print("| {:<98} |".format("    Chetan Gurram"))
+    def end():
+        Game.__clear_screen()
+        exit()
