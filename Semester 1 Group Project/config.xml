@@ -25,7 +25,7 @@
 
     <locations>
         <location id = "1">
-            <name> Outside "The" House </name>
+            <name> "The" House </name>
 
             <interaction>
                 <content>
@@ -58,7 +58,6 @@
                 </choice>
 
                 <response id = "1" location = "2">
-
                     <play name = "fur_elise"> </play>
 
                     No response.
@@ -91,27 +90,295 @@
         </location>
 
         <location id = "2">
-            <name> Inside </name>
+            <name> Corridor </name>
 
             <interaction id = "1">
                 <content>
-                    I'm not cool.
+                    Following the sound of the piano, trying to locate its origin, you find yourself in a long
+                    corridor - the middle of a long corridor. You make notice of paintings on the wall, which
+                    happen to be disturbing to look at.
+                    At this point, you think that something is definitely not right in the house as
+                    you can hear the piano from both ends of the leading corridor. You are unable to track the
+                    origin any further as the sound seems to be prominent in both directions.
+
+                    Zzzhshzhshzh!zhsh!!!
+
+                    The light flickers and you freeze for a moment feeling scared. You recover quickly and try
+                    deciding whether or not you should be moving about in an unknown house. There's nothing else
+                    you could possibly do as you found yourself locked from the outside of the house at the very
+                    moment you entered. You let out a sigh and try taking a better look in the corridor.
+
+                    You notice three doors towards your left. They might be doors into rooms, you think. One of the
+                    doors is open while the other two are closed. You think that maybe the piano is being played in
+                    there. On your right, you can notice a bigger space (which is probably the dining area),
+                    another room and a much bigger opening into the hall. Beside the kitchen, you also see a
+                    staircase leading upstairs.
+
+                    You realise something is really off as the house didn't seem this big and spacious from the
+                    outside.
+
+                    What do you do next?
                 </content>
 
                 <choice id = "1">
-                    Knock on the door
+                    Try investigating the left side first
                 </choice>
 
                 <choice id = "2">
-                    You think it's a dream and want to wake up
+                    Try investigating the right side first
                 </choice>
 
-                <response id = "1" location = "1">
-                    Test
+                <choice id = "3">
+                    Go back towards the entrance and try your luck at opening the door
+                </choice>
+
+                <response id = "1" location = "3">
+                    You start to investigate the left side of the corridor.
                 </response>
 
-                <response id = "2" location = "-1">
-                    Die!
+                <response id = "2" location = "4">
+                    You start to investigate the right side of the corridor.
+                </response>
+
+                <response id = "3" location = "-1">
+                    You walk back towards the entrance. The sound of the piano intensifies. You begin to panic.
+                    You reach the door and try the door knob. It's jammed! Locked from the outside. You just
+                    want to get out somehow. Making a run for it, you try to jump out a window. Just before you
+                    feel the glass of the window, you slip - hitting your head on the wall, really hard.
+
+                    You are caught off guard for a few moments before you see it...
+
+                    Blood.
+
+                    Blood everywhere, coming out from a fresh wound on your head. You drag yourself to the window and
+                    try to break through by pushing on it with your hand. Unfortunately, the window doesn't break
+                    as there isn't enough force. You start to lose consciousness as you're losing blood pretty fast.
+                    Knowing that, at this pace of loss of blood, you're going to die, you scream and collapse onto the
+                    floor.
+
+                    A few moments pass by and you start to lose sense of the world. You are in pain. The light
+                    is darkening...
+
+                    You died!
+                </response>
+            </interaction>
+        </location>
+
+        <location id = "3">
+            <name> Left side of the corridor </name>
+
+            <interaction id = "1">
+                <content>
+                    There are three doors that you can see, which are possible entrances to the bedrooms on this
+                    floor of the house. You try the knob of the room closest to you but it's locked. You move to
+                    another door and find that it opens. You try taking a peek inside but there's not enough
+                    visibility without any lights on. You also try the door of the last room and find that it opens
+                    too.
+
+                    You think that you should first try finding out who's playing the piano before moving around
+                    in the unknown house. The problem is, you are not able to distinguish the direction from which
+                    the sound is reaching you. You feel it's all around you. Strange.
+
+                    You think about checking the rooms out first.
+
+                    What do you do next?
+                </content>
+
+                <choice id = "1">
+                    Go inside Room 2
+                </choice>
+
+                <choice id = "2">
+                    Go inside Room 3
+                </choice>
+
+                <response id = "1" location = "5">
+                    You walk back towards Room 2, open the door and go inside.
+                </response>
+
+                <response id = "2" location = "6">
+                    <play name = "footsteps"> </play>
+                    You go inside Room 3. Behind you, you can hear the footsteps at the other end of the corridor.
+                    You stop for a moment deciding what to do. You call out asking if anyone's there.
+
+                    No response. The footsteps stop. You see no one on the other end.
+
+                    You decide to continue your search in the room before going elsewhere.
+                </response>
+            </interaction>
+        </location>
+
+        <location id = "4">
+            <name> Right side of the corridor </name>
+
+            <interaction id = "1">
+                <content>
+                </content>
+
+                <choice id = "1">
+                </choice>
+
+                <choice id = "2">
+                </choice>
+
+                <choice id = "3">
+                </choice>
+
+                <response id = "1" location = "3">
+                </response>
+
+                <response id = "2" location = "4">
+                </response>
+
+                <response id = "3" location = "-1">
+                </response>
+            </interaction>
+        </location>
+
+        <location id = "5">
+            <name> Room 2 </name>
+
+            <interaction id = "1">
+                <content>
+                    You enter Room 2. It's dark. You try running your hand on the wall trying to find for light
+                    switches.
+
+                    THUD! The door closes behind you.
+
+                    You are now really scared and start banging on the door. You scream for whoever is listening
+                    to stop joking around with you and open the door. You bang on the door for what seems like a
+                    very very long time before you sit down with your back towards the door. You start to think
+                    about your options knowing you're doomed as no one's responding.
+
+                    You try to run your hand around the wall, once again, feeling for switches. After a while, you
+                    locate a panel of switches and start clicking about rapidly. You switch on the lights. The light
+                    is dim but it's something instead of the pitch darkness. What you see next horrifies you...
+
+                    The walls of the room are completely painted in black. There's no windows or any other doors
+                    leading to bathrooms or anything else. There's a portrait of what looks like a lady trying to
+                    kill children. It's all red and black; the red looking as though it's someone's blood used in the
+                    painting. You are really scared now, and sit down by the wall, crying to yourself. You glance
+                    towards the ceiling knowing that you're doomed, and then you see it!
+
+                    The ceiling is marked with Pentagram signs - the sign of the Church of Satan. Evil. It dawns
+                    on you that this place is evil. There's scratches and claw markings everywhere. It makes you
+                    wonder if there were any other people who came into this house and were doomed for eternity.
+
+                    ...............................................
+                    .                 6666666666                  .
+                    .            66666          66666             .
+                    .         6666                   666          .
+                    .       666  6                    6 666       .
+                    .     666     66               666    66      .
+                    .    66       66666         66666      666    .
+                    .   66         6   66     66   66       666   .
+                    .  66          66    6666     66         666  .
+                    . 666           66  666 66   66           66  .
+                    . 66            6666       6666           666 .
+                    . 66           6666         6666          666 .
+                    . 66        666                 666       666 .
+                    . 66     666      66       66      666    666 .
+                    . 666  666666666666666666666666666666666  66  .
+                    .  66               6    66              666  .
+                    .   66              66   66             666   .
+                    .    66              6  66             666    .
+                    .      6666           666           666       .
+                    .         6666         6         666          .
+                    .            66666     6    66666             .
+                    .                 6666666666                  .
+                    ...............................................
+
+                    What do you do next?
+                </content>
+
+                <choice id = "1">
+                    Wait and see what happens, assuming this really is someone trying to prank you
+                </choice>
+
+                <choice id = "2">
+                    Try breaking through the room door and making a run for your life
+                </choice>
+
+                <response id = "1" location = "-1">
+                    You wait for what seems like a really long time. You've lost track of time. You just wait and
+                    wait and wait and wait and wait for this to get over. You feel like you would kill the person
+                    pranking you if you ever got a chance to see them once the door opens.
+
+                    Time slips by. Nothing really happens. You bang on the door occasionally. Absolutely nothing
+                    at all. The piano is being played all this while. Hunger is overtaking you. You feel pain and
+                    regret. You should have never entered the house and just waited for help on the highway.
+
+                    You start to become psychotic as time passes by. Maybe a few days have passed by...
+                    You start to make scratches on the wall adding to the collection of existing scratches.
+
+                    You are hungry and thirsty. There's nothing you can do. You start to find comfort in the sound
+                    of the piano and wait for death to overtake you.
+
+                    You died!
+                </response>
+
+                <response id = "2" location = "3">
+                    You make a few runs at the door. You kick it and try slamming onto it but nothing seems to
+                    cause any harm to the door. It just doesn't break open. You start to feel the exhaustion in
+                    your muscles and the thirst on your tongue from all the effort.
+
+                    You sit down and try to rest. Time slips by. For a very long time, you just sit there and sob
+                    to yourself. What is this happening with you? Why is this happening with you? You ask yourself
+                    these questions. You scream as loud as you can, for as long as you can, for help even though
+                    you know no one's coming to help you.
+
+                    You walk towards the portrait of the lady killing children and lift it off the wall. To your
+                    surprise, there's some sort package present in a small cavity that was hidden by the painting
+                    previously.
+
+                    The package reads "Food", but it looks like it's been written in someone's blood. Not giving
+                    too much attention to that, you pick at the wrapping and find a box of bread for you to eat.
+                    It looks slightly stale but you eat it anyway, as you have been hungry and thirsty for a long
+                    long time.
+
+                    After a few hours, you begin to think it was a bad idea as a severe stomach ache sets in. You
+                    are in pain. It lasts for a long time. Time passes and eventually the darkness sets in.
+
+                    You know you're going to die and wait for it to peacefully embrace you, finding comfort in the
+                    sound of the piano until then.
+
+                    Tsskssk!
+
+                    Just when you thought everything was going downhill, the door clicks. You feel very tired to
+                    even get up. You do so anyway and make a run for the door, which you now believe is open. You
+                    pull the door open and find yourself in a completely different place. You expected to emerge
+                    out into the corridor. You think to yourself if you're dreaming.
+
+                    Before you can gather your thoughts, something comes slashing down into you!
+
+                    You died!
+                </response>
+            </interaction>
+        </location>
+
+        <location id = "6">
+            <name> Room 3 </name>
+
+            <interaction id = "1">
+                <content>
+                </content>
+
+                <choice id = "1">
+                </choice>
+
+                <choice id = "2">
+                </choice>
+
+                <choice id = "3">
+                </choice>
+
+                <response id = "1" location = "3">
+                </response>
+
+                <response id = "2" location = "4">
+                </response>
+
+                <response id = "3" location = "-1">
                 </response>
             </interaction>
         </location>

@@ -16,7 +16,7 @@ import player
 class Game:
     __text_length = 100
 
-    __text_display_delay = 0.00
+    __text_display_delay = 0.02
 
     __logo1 = ["██████╗░     ██╗░░░██╗      ███╗░░██╗", "██╔══██╗     ██║░░░██║      ████╗░██║",
                "██████╔╝     ██║░░░██║      ██╔██╗██║", "██╔══██╗     ██║░░░██║      ██║╚████║",
@@ -146,7 +146,7 @@ class Game:
         print(" {:-<{size}} ".format("", size = Game.__text_length + 2), flush = True)
 
     @staticmethod
-    def __startup():
+    def __startup_screen():
         """
             Displays startup screen
 
@@ -163,7 +163,7 @@ class Game:
         Game.__pretty_print("")
         Game.__pretty_print("")
         Game.__pretty_print("")
-        print("{0}".format(input(">>> Press any key to continue")))
+        print("{0}".format(input(">>> Press Enter to continue")))
         Game.__pretty_print("")
 
     def start(self):
@@ -175,7 +175,7 @@ class Game:
 
         # Display startup screen
         Game.__clear_screen()
-        Game.__boxify(self.__startup)
+        Game.__boxify(self.__startup_screen)
 
         # Game loop handling different events
         while True:
@@ -223,7 +223,7 @@ class Game:
     def __respond(self):
         self.__print_screen()
         Game.__pretty_print("")
-        print("{0}".format(input(">>> Press any key to continue")))
+        print("{0}".format(input(">>> Press Enter to continue")))
         Game.__pretty_print("")
 
     def __print_screen(self):
