@@ -317,7 +317,7 @@
                     You died!
                 </response>
 
-                <response id = "2" location = "3">
+                <response id = "2" location = "-1">
                     You make a few runs at the door. You kick it and try slamming onto it but nothing seems to
                     cause any harm to the door. It just doesn't break open. You start to feel the exhaustion in
                     your muscles and the thirst on your tongue from all the effort.
@@ -347,7 +347,7 @@
                     Just when you thought everything was going downhill, the door clicks. You feel very tired to
                     even get up. You do so anyway and make a run for the door, which you now believe is open. You
                     pull the door open and find yourself in a completely different place. You expected to emerge
-                    out into the corridor. You think to yourself if you're dreaming.
+                    out into the corridor. You think to yourself if you're dreaming. But you're not...
 
                     Before you can gather your thoughts, something comes slashing down into you!
 
