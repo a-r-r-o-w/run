@@ -15,15 +15,14 @@
         __________________________________
         08     Aryan V S           PES1UG20CS083
         09     Aryansh Bhargavan   PES1UG20CS084
-        xx     Chetan Gurram       PES1UG20CS112
+        50     Chetan Gurram       PES1UG20CS112
 """
 
 # Project file imports
 import init
-import game
-
-# Run initial setup
 init.setup()
+
+import game
 
 # Create Game object
 Game = game.Game("config.xml")

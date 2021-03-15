@@ -8,7 +8,7 @@
         __________________________________
         08     Aryan V S           PES1UG20CS083
         09     Aryansh Bhargavan   PES1UG20CS084
-        xx     Chetan Gurram       PES1UG20CS112
+        50     Chetan Gurram       PES1UG20CS112
 """
 
 # Dependency imports
@@ -207,7 +207,7 @@ class Game:
         loc = self.__player.location
 
         if loc == "-1":
-            Game.end()
+            Game.__boxify(Game.end)
 
         content = self.__locations[loc]["interactions"]["content"]
         choices = self.__locations[loc]["interactions"]["choices"]
@@ -265,7 +265,7 @@ class Game:
 
         if key not in self.__locations[loc]["interactions"]["responses"].keys():
             Game.__clear_screen()
-            self.end()
+            Game.__boxify(Game.end)
 
         response = self.__locations[loc]["interactions"]["responses"][key]
         self.__player.set_location(response["loc"])
@@ -273,5 +273,16 @@ class Game:
 
     @staticmethod
     def end():
+        for line in Game.__logo1:
+            Game.__pretty_print(line, "^")
+
+        Game.__pretty_print("Made with ♥ by:")
+        Game.__pretty_print("    Aryan V S")
+        Game.__pretty_print("    Aryansh Bhargavan")
+        Game.__pretty_print("    Chetan Gurram")
+        Game.__pretty_print("")
+        Game.__pretty_print("")
+        Game.__pretty_print("Thank you for playing!")
+        time.sleep(3)
         Game.__clear_screen()
         exit()
