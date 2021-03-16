@@ -32,8 +32,6 @@ class Game:
     __logo2 = ["█▄▄▄▄  ▄      ▄", "█  ▄▀   █      █", " █▀▀▌ █   █ ██   █",
                " █  █ █   █ █ █  █", "   █  █▄ ▄█ █  █ █", "  ▀    ▀▀▀  █   ██"]
 
-    __has_ended = False
-
     def __init__(self, xml_file):
         """
             A Game object requires an xml file to setup game configurations
